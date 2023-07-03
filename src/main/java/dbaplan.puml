@@ -1,0 +1,22 @@
+@startmindmap
+'https://plantuml.com/mindmap-diagram
+
+title DbaPLan
+
+* Customer
+** Inventory
+* One Customer can have multiple Inventories (one-to-many)
+* One Inventory belongs to a single Customer (many-to-one)
+
+* Inventory
+** Product
+* One Inventory can have multiple Products (one-to-many)
+* One Product belongs to a single Inventory (many-to-one)
+
+* Category
+** Product
+* One Category can have multiple Products (one-to-many)
+* One Product can belong to multiple Categories (many-to-many)Changes
+
+
+@endmindmap

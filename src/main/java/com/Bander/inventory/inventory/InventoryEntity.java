@@ -20,7 +20,7 @@ public class InventoryEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String name;
+    private String inventoryName;
     @Column(updatable = false)
     private int capacity;
     private int currentStock;

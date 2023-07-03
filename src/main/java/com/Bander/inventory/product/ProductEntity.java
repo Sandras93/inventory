@@ -1,10 +1,10 @@
-package com.Bander.inventory.customer;
+package com.Bander.inventory.product;
 
+import com.Bander.inventory.customer.CustomerGender;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.cglib.core.Local;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
@@ -15,21 +15,19 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CustomerEntity {
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"manufacturer","productName"})})
+public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
-    private String customerName;
-    private String address;
-    @Column(unique = true)
-    private String email;
-    @Column(unique = true)
-    private String phoneNum;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime dateOfBirth;
+    private String productName;
+    private String description;
+    private int price;
+    private int quantity;
+    private String manufacturer;
     @Enumerated(value = EnumType.STRING)
-    private CustomerGender customerGender;
+    private ProductType productType;
+
     @CreationTimestamp
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH-mm")
     private LocalDateTime createdTime;
@@ -37,5 +35,5 @@ public class CustomerEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH-mm")
     private LocalDateTime updatedTime;
 
-    private boolean active;
+    private boolean available;
 }

@@ -14,15 +14,17 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"manufacturer","productName"})})
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"manufacturer", "productName"})})
 public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Column(nullable = false)
     private String productName;
     private String description;
     private int price;
     private int quantity;
+    @Column(nullable = false)
     private String manufacturer;
     @Enumerated(value = EnumType.STRING)
     private ProductType productType;

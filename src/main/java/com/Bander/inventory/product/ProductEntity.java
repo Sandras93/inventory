@@ -1,6 +1,5 @@
 package com.Bander.inventory.product;
 
-import com.Bander.inventory.customer.CustomerGender;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

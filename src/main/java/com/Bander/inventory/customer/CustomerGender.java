@@ -9,6 +9,8 @@ public enum CustomerGender {
     CustomerGender(String customerGender) {
         this.customerGender = customerGender;
     }
+
+
     public String getCustomerGender(){
         return customerGender;
     }

@@ -1,5 +1,7 @@
 package com.Bander.inventory.product;
 
+import com.Bander.inventory.customer.CustomerEntity;
+import com.Bander.inventory.inventory.InventoryEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -37,4 +39,7 @@ public class ProductEntity {
     private LocalDateTime updatedTime;
 
     private boolean available;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private InventoryEntity inventory;
 }

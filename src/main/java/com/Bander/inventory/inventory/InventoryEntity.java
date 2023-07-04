@@ -19,6 +19,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"inventoryName", "address"})
+})
 public class InventoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

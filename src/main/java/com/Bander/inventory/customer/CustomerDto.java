@@ -2,6 +2,7 @@ package com.Bander.inventory.customer;
 
 import com.Bander.inventory.inventory.InventoryDto;
 import com.Bander.inventory.inventory.InventoryEntity;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,10 +14,13 @@ import java.util.List;
 @Builder
 public class CustomerDto {
     private Integer id;
+    @NotBlank(message = "Customer name is required")
     private String customerName;
     private String address;
     private String email;
+    @NotBlank(message = "Phone number is required")
     private String phoneNum;
+    @NotBlank(message = "Date of birth is required")
     private LocalDateTime dateOfBirth;
     private CustomerGender customerGender;
     private boolean active;

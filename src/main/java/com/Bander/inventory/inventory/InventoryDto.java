@@ -2,6 +2,7 @@ package com.Bander.inventory.inventory;
 
 import com.Bander.inventory.product.ProductDto;
 import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,9 +14,11 @@ import java.util.List;
 @Builder
 public class InventoryDto {
     private Integer id;
+    @NotBlank(message = "Inventory name is required")
     private String inventoryName;
     private int capacity;
     private int currentStock;
+    @NotBlank(message = "Inventory address is required")
     private String address;
     private String description;
     private String email;

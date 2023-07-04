@@ -17,17 +17,21 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"customerName", "dateOfBirth", "phoneNum"})
+})
 public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
+    @Column(nullable = false, unique = true)
     private String customerName;
     private String address;
     @Column(unique = true)
     private String email;
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String phoneNum;
+    @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime dateOfBirth;
     @Enumerated(value = EnumType.STRING)
@@ -38,7 +42,7 @@ public class CustomerEntity {
     @UpdateTimestamp
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH-mm")
     private LocalDateTime updatedTime;
-
+    @Column(columnDefinition = "boolean default true")
     private boolean active;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)

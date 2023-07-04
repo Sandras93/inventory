@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class CustomerDto {
     @NotBlank(message = "Phone number is required")
     private String phoneNum;
     @NotBlank(message = "Date of birth is required")
-    private LocalDateTime dateOfBirth;
+    private LocalDate dateOfBirth;
     private CustomerGender customerGender;
     private boolean active;
 

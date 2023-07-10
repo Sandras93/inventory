@@ -39,6 +39,7 @@ class CustomerServiceTest {
         assertEquals("1122, Mucsaröcsöge 1.", savedCustomerDto.getAddress());
         assertEquals(LocalDate.parse("2000-01-01"), savedCustomerDto.getDateOfBirth());
 
+        customerService.deleteById(savedCustomerDto.getId());
     }
 
     @Nested
@@ -106,9 +107,23 @@ class CustomerServiceTest {
         @Test
         void findAllCustomers() {
             List<CustomerDto> customerDtoList = customerService.findAllCustomers();
-        assertThat(customerDtoList)
-                .extracting(CustomerDto::getCustomerName)
-                .contains("Bruh Customer","Poggers Customer");
+            assertThat(customerDtoList)
+                    .extracting(CustomerDto::getCustomerName)
+                    .contains("Bruh Customer", "Poggers Customer");
+        }
+
+        @Test
+        void deleteTest() {
+            List<CustomerDto> customerDtoList = customerService.findAllCustomers();
+            assertThat(customerDtoList.toArray().length).isGreaterThanOrEqualTo(2);
+
+            customerService.deleteById(testCustomer1.getId());
+            customerService.deleteById(testCustomer2.getId());
+
+            customerDtoList = customerService.findAllCustomers();
+            assertThat(customerDtoList)
+                    .extracting(CustomerDto::getCustomerName)
+                    .doesNotContain("Bruh Customer", "Poggers Customer");
         }
     }
 }

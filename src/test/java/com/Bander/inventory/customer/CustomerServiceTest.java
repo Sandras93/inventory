@@ -74,7 +74,8 @@ class CustomerServiceTest {
 
         @AfterEach
         void tearDown() {
-
+            customerService.deleteById(testCustomer1.getId());
+            customerService.deleteById(testCustomer2.getId());
         }
 
         @Test
@@ -91,13 +92,13 @@ class CustomerServiceTest {
 
         }
 
-//        @Test
-//        void findByNameTest() {
-//            System.out.println(testCustomer1.getCustomerName());
-//
-//            assertEquals(testCustomer1.getCustomerName(),
-//                    customerService.findByName("Bruh Customer").getCustomerName());
-//
-//        }
+        @Test
+        void findByNameTest() {
+            System.out.println(testCustomer1.getCustomerName());
+
+            assertEquals(testCustomer1.getCustomerName(),
+                    customerService.findByCustomerName("Bruh Customer").getCustomerName());
+        }
+
     }
 }

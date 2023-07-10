@@ -30,8 +30,12 @@ public class CustomerService {
         return CustomerDto.factory(customerRepository.getReferenceById(id));
     }
 
+    public void deleteById(Integer id) {
+        customerRepository.deleteById(id);
+    }
 
-//    public CustomerDto findByName(String customerName) {
-//    return CustomerDto.factory(customerRepository.findCustomerByName(customerName));
-//    }
+
+    public CustomerDto findByCustomerName(String customerName) {
+        return CustomerDto.factory(customerRepository.findCustomerByCustomerName(customerName));
+    }
 }

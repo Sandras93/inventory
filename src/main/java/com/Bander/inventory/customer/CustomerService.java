@@ -25,4 +25,13 @@ public class CustomerService {
                 .build();
         return CustomerDto.factory(customerRepository.save(customer));
     }
+
+    public CustomerDto findById(Integer id) {
+        return CustomerDto.factory(customerRepository.getReferenceById(id));
+    }
+
+
+//    public CustomerDto findByName(String customerName) {
+//    return CustomerDto.factory(customerRepository.findCustomerByName(customerName));
+//    }
 }

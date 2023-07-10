@@ -115,7 +115,7 @@ class CustomerServiceTest {
         @Test
         void deleteTest() {
             List<CustomerDto> customerDtoList = customerService.findAllCustomers();
-            assertThat(customerDtoList.toArray().length).isGreaterThanOrEqualTo(2);
+            assertThat(customerDtoList.toArray().length).isEqualTo(2);
 
             customerService.deleteById(testCustomer1.getId());
             customerService.deleteById(testCustomer2.getId());

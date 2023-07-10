@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,5 +46,19 @@ public class CustomerService {
         return customerRepository.findAll().stream()
                 .map(CustomerDto::factory)
                 .toList();
+    }
+
+
+    public CustomerDto editCustomer(CustomerDto dto) {
+        var customerToEdit = customerRepository.getReferenceById(dto.getId());
+        customerToEdit.setCustomerName(dto.getCustomerName());
+        customerToEdit.setAddress(dto.getAddress());
+        customerToEdit.setEmail(dto.getEmail());
+        customerToEdit.setPhoneNum(dto.getPhoneNum());
+        customerToEdit.setDateOfBirth(dto.getDateOfBirth());
+        customerToEdit.setCustomerGender(dto.getCustomerGender());
+        customerToEdit.setActive(dto.isActive());
+
+        return CustomerDto.factory(customerToEdit);
     }
 }

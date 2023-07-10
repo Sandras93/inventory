@@ -125,5 +125,37 @@ class CustomerServiceTest {
                     .extracting(CustomerDto::getCustomerName)
                     .doesNotContain("Bruh Customer", "Poggers Customer");
         }
+
+        @Test
+        void editTest() {
+            var customerToEditDto = CustomerDto.builder()
+                    .id(testCustomer2.getId())
+                    .customerName("Edited Name")
+                    .address(testCustomer2.getAddress())
+                    .email(testCustomer2.getEmail())
+                    .phoneNum(testCustomer2.getPhoneNum())
+                    .dateOfBirth(testCustomer2.getDateOfBirth())
+                    .customerGender(testCustomer2.getCustomerGender())
+                    .active(testCustomer2.isActive())
+                    .build();
+            var editedCustomer = customerService.editCustomer(customerToEditDto);
+            assertEquals("Edited Name", editedCustomer.getCustomerName());
+            assertEquals(testCustomer2.getAddress(), editedCustomer.getAddress());
+
+            var customerEditAgainDto = CustomerDto.builder()
+                    .id(editedCustomer.getId())
+                    .customerName(editedCustomer.getCustomerName())
+                    .address("Hotyka")
+                    .email(editedCustomer.getEmail())
+                    .phoneNum(editedCustomer.getPhoneNum())
+                    .dateOfBirth(editedCustomer.getDateOfBirth())
+                    .customerGender(editedCustomer.getCustomerGender())
+                    .active(editedCustomer.isActive())
+                    .build();
+
+            var editedCustomerAgain = customerService.editCustomer(customerEditAgainDto);
+            assertEquals("Edited Name", editedCustomerAgain.getCustomerName());
+            assertEquals("Hotyka", editedCustomerAgain.getAddress());
+        }
     }
 }

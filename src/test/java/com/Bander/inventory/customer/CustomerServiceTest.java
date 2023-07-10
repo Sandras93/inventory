@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -98,7 +99,16 @@ class CustomerServiceTest {
 
             assertEquals(testCustomer1.getCustomerName(),
                     customerService.findByCustomerName("Bruh Customer").getCustomerName());
+            assertEquals(testCustomer2.getCustomerName(),
+                    customerService.findByCustomerName("Poggers Customer").getCustomerName());
         }
 
+        @Test
+        void findAllCustomers() {
+            List<CustomerDto> customerDtoList = customerService.findAllCustomers();
+        assertThat(customerDtoList)
+                .extracting(CustomerDto::getCustomerName)
+                .contains("Bruh Customer","Poggers Customer");
+        }
     }
 }

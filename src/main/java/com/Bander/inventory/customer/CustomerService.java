@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Transactional
 @Service
@@ -37,5 +39,11 @@ public class CustomerService {
 
     public CustomerDto findByCustomerName(String customerName) {
         return CustomerDto.factory(customerRepository.findCustomerByCustomerName(customerName));
+    }
+
+    public List<CustomerDto> findAllCustomers() {
+        return customerRepository.findAll().stream()
+                .map(CustomerDto::factory)
+                .toList();
     }
 }

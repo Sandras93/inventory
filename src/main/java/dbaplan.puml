@@ -20,3 +20,9 @@ title DbaPLan
 
 
 @endmindmap
+
+@startuml
+Customer --{ Inventory
+Inventory --{ Product
+Product }--{Categories
+@enduml

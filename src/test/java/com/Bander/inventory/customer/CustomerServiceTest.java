@@ -45,8 +45,8 @@ class CustomerServiceTest {
     @Nested
     public class testWithExistingCustomers {
 
-        CustomerDto testCustomer1;
-        CustomerDto testCustomer2;
+        private CustomerDto testCustomer1;
+        private CustomerDto testCustomer2;
 
         @BeforeEach
         void setUp() {

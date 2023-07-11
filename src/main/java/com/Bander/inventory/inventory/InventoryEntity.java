@@ -33,9 +33,7 @@ public class InventoryEntity {
     private int capacity;
     private int currentStock;
     private String description;
-    @Column(unique = true)
     private String email;
-    @Column(unique = true)
     private String phoneNum;
     @Enumerated(value = EnumType.STRING)
     private InventoryType inventoryType;

@@ -6,6 +6,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class InventoryService {
@@ -31,5 +33,15 @@ public class InventoryService {
                 .customer(customer)
                 .build();
         return InventoryDto.factory(inventoryRepository.save(newInventory));
+    }
+
+    public void deleteInventory(InventoryDto savedInventoryToDelete) {
+        inventoryRepository.deleteById(savedInventoryToDelete.getId());
+    }
+
+    public List<InventoryDto> findAllInventories() {
+        return inventoryRepository.findAll().stream()
+                .map(InventoryDto::factory)
+                .toList();
     }
 }

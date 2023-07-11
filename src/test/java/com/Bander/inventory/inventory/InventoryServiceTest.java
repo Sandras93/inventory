@@ -5,6 +5,7 @@ import com.Bander.inventory.customer.CustomerGender;
 import com.Bander.inventory.customer.CustomerService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -52,5 +53,26 @@ class InventoryServiceTest {
     void tearDown() {
         customerService.deleteById(testCustomer1.getId());
         customerService.deleteById(testCustomer2.getId());
+    }
+
+    @Test
+    void createInventoryTest() {
+        CreateInventoryCommand inventory = CreateInventoryCommand.builder()
+                .inventoryName("First inventory")
+                .address("1122, Inventory address")
+                .capacity(1000)
+                .currentStock(500)
+                .description("This is an inventory")
+                .email("inventory@example.com")
+                .phoneNum("0630-852-9637")
+                .inventoryType(InventoryType.WAREHOUSE)
+                .open(true)
+                .customerId(testCustomer1.getId())
+                .build();
+
+        InventoryDto createdInventory = inventoryService.createInventory(inventory);
+
+        assertNotNull(createdInventory.getId());
+        assertEquals("First inventory",createdInventory.getInventoryName());
     }
 }

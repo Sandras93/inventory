@@ -61,4 +61,8 @@ public class CustomerService {
 
         return CustomerDto.factory(customerToEdit);
     }
+
+    public CustomerEntity findCustomerEntityById(Integer customerId) {
+        return customerRepository.getReferenceById(customerId);
+    }
 }

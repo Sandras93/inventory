@@ -28,10 +28,10 @@ public class InventoryEntity {
     private Integer id;
 
     private String inventoryName;
+    private String address;
     @Column(updatable = false)
     private int capacity;
     private int currentStock;
-    private String address;
     private String description;
     @Column(unique = true)
     private String email;
